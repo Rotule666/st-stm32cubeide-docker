@@ -1,6 +1,5 @@
 FROM ubuntu:bionic
 
-
 MAINTAINER Francois Rainville <francoisrainville@effenco.com>
 
 RUN apt-get -y update && \
@@ -14,8 +13,8 @@ RUN unzip /tmp/en.st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh.zip -d /tmp 
     rm /tmp/en.st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh.zip && \
 	chmod +x /tmp/st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh
 	
-RUN cd /tmp && \
-    sh -c '/tmp/st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh --tar -xvf'
+RUN sh -c '/tmp/st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh --tar -xvf -C /tmp' && \
+	rm /tmp/setup.sh
 
 COPY setup.sh /tmp
 
