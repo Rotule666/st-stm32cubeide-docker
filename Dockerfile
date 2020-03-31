@@ -11,7 +11,9 @@ RUN apt-get -y update && \
 # Install miniconda
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh && \
     bash /tmp/miniconda.sh -b -p /opt/miniconda && \
-	export PATH=/opt/miniconda/bin:$PATH
+	ln -s /opt/miniconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/miniconda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
 
 # Install st-stm32cubeide
 RUN wget -P /tmp https://transfer.sh/gKkUb/en.st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh.zip && \
