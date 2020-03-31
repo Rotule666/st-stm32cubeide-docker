@@ -10,3 +10,12 @@ I use gitlabCI so the paths to my project will already be there, but you can mak
 # build
 
 sh /opt/st/stm32cubeide_1.3.0/headless_build.sh -build MYPROJECT -data /opt/workspace
+
+# Docker cheat cheat
+docker build -t rotule666/st-stm32cubeide:1.3.0 .
+docker images
+docker run -d -it rotule666/st-stm32cubeide:1.3.0
+docker ps
+docker exec -ti e9f68b168184 bash
+
+docker push rotule666/st-stm32cubeide:1.3.0
