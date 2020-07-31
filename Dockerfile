@@ -1,6 +1,6 @@
 FROM ubuntu:bionic
 
-MAINTAINER Francois Rainville <francoisrainville@effenco.com>
+#AUTHOR Francois Rainville <francoisrainville@effenco.com>
 
 RUN apt-get -y update && \
     apt-get -y install wget && \
@@ -20,12 +20,14 @@ RUN /opt/miniconda/bin/pip install crcmod && \
     /opt/miniconda/bin/pip install intelhex
 
 # Install st-stm32cubeide
-RUN wget --quiet -P /tmp https://www.dropbox.com/s/akl3m428no229t3/en.st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh.zip?dl=1 && \
-    mv /tmp/en.st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh.zip?dl=1 /tmp/en.st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh.zip && \
-    unzip /tmp/en.st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh.zip -d /tmp && \
-    rm /tmp/en.st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh.zip && \
-	chmod +x /tmp/st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh && \
-    sh -c '/tmp/st-stm32cubeide_1.3.0_5720_20200220_1053_amd64.sh --tar -xvf -C /tmp' && \
+
+#COPY en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip /tmp/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip
+RUN wget --quiet -P /tmp https://www.dropbox.com/s/6ap9qbksf1w4zf8/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip?dl=1 && \
+    mv /tmp/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip?dl=1 /tmp/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip && \
+    unzip /tmp/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip -d /tmp && \
+    rm /tmp/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip && \
+	chmod +x /tmp/st-stm32cubeide_1.4.0_7511_20200720_0928_amd64.sh && \
+    sh -c '/tmp/st-stm32cubeide_1.4.0_7511_20200720_0928_amd64.sh --tar -xvf -C /tmp' && \
 	rm /tmp/setup.sh
 
 COPY setup.sh /tmp
