@@ -11,13 +11,6 @@ export LICENSE_ALREADY_ACCEPTED=1
 install_as_root=
 if [ "$(id -un)" = "root" ]; then
 	install_as_root=1
-else
-	typeset -u answer
-	read -p "Do you want to install STLinkServer and Udev rules for STLink and Jlink? Without these packages, you will not be able to use debugging feature.
-Install them? (you need sudo permission to do that) [Y/n]" answer
-	if [ ${answer:-Y} = "Y" ]; then
-		install_debug=1
-	fi
 fi
 
 # Check what kind of sudo is available.
@@ -64,10 +57,7 @@ installdir=$default_install_dir
 while true
 do
 	if [ -z "$param_installdir" ]; then
-		# Interactive
-		read -p "STM32CubeIDE install dir? [$installdir] " answer2
-
-		installdir=${answer2:-$installdir}
+		installdir=$installdir
 	else
 		# Not interactive
 		installdir="$param_installdir"
@@ -96,22 +86,6 @@ done
 
 echo "Installing STM32CubeIDE into $installdir ..."
 
-# Setup java cacerts for internal JRE
-$thisdir/installCA.sh $installdir || true
-# Install installCA.sh into installation dir in case someone needs to rerun it afterward.
-cp $thisdir/installCA.sh $installdir
-
-# Install uninstaller
-cp \
-	uninstall.sh \
-	desktop_file_location.txt \
-	\
-	$installdir
-
-if [ "$install_as_root" -o "$install_debug" ]; then
-	eval $available_sudo ./install_as_root.sh $installdir
-fi
-
-echo "STM32CubeIDE installed successfully"
+tar zxf /tmp/st-stm32cubeide*.tar.gz -C $installdir
 
 eval $available_sudo $thisdir/cleanup.sh
