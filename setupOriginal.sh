@@ -5,7 +5,13 @@ param_installdir=$(readlink -m "$1")
 
 chmod +x $thisdir/*.sh
 
-
+# Ask user to agree on license
+$thisdir/prompt_linux_license.sh
+if [ $? -ne 0 ]
+then
+	$thisdir/cleanup.sh
+	exit 1
+fi
 export LICENSE_ALREADY_ACCEPTED=1
 
 install_as_root=
@@ -95,6 +101,7 @@ do
 done
 
 echo "Installing STM32CubeIDE into $installdir ..."
+tar zxf st-stm32cubeide*.tar.gz -C $installdir
 
 # Setup java cacerts for internal JRE
 $thisdir/installCA.sh $installdir || true
