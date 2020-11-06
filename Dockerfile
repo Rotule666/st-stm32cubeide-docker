@@ -32,6 +32,7 @@ RUN wget --quiet -P /tmp https://www.dropbox.com/s/6ap9qbksf1w4zf8/en.st-stm32cu
 
 COPY setup.sh /tmp
 
+RUN chmod +x /tmp/setup.sh
 RUN sh -c '/tmp/setup.sh'
 
 RUN rm -rf /tmp/*
