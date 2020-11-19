@@ -22,16 +22,17 @@ RUN /opt/miniconda/bin/pip install crcmod && \
 # Install st-stm32cubeide
 
 #COPY en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip /tmp/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip
-RUN wget --quiet -P /tmp https://www.dropbox.com/s/6ap9qbksf1w4zf8/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip?dl=1 && \
-    mv /tmp/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip?dl=1 /tmp/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip && \
-    unzip /tmp/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip -d /tmp && \
-    rm /tmp/en.st-stm32cubeide_1.4.0_7511_20200720_0928_amd64_sh.zip && \
-	chmod +x /tmp/st-stm32cubeide_1.4.0_7511_20200720_0928_amd64.sh && \
-    sh -c '/tmp/st-stm32cubeide_1.4.0_7511_20200720_0928_amd64.sh --tar -xvf -C /tmp' && \
+RUN wget --quiet -P /tmp https://www.dropbox.com/s/tilvl25ysxj929c/en.en-st-stm32cubeide_1-5-0_8698_20201117_1050_amd64_sh.zip?dl=1 && \
+    mv /tmp/en.en-st-stm32cubeide_1-5-0_8698_20201117_1050_amd64_sh.zip?dl=1 /tmp/en.en-st-stm32cubeide_1-5-0_8698_20201117_1050_amd64_sh.zip && \
+    unzip /tmp/en.en-st-stm32cubeide_1-5-0_8698_20201117_1050_amd64_sh.zip -d /tmp && \
+    rm /tmp/en.en-st-stm32cubeide_1-5-0_8698_20201117_1050_amd64_sh.zip && \
+	chmod +x /tmp/st-stm32cubeide_1.5.0_8698_20201117_1050_amd64.sh && \
+    sh -c '/tmp/st-stm32cubeide_1.5.0_8698_20201117_1050_amd64.sh --tar -xvf -C /tmp' && \
 	rm /tmp/setup.sh
 
 COPY setup.sh /tmp
 
-RUN sh -c '/tmp/setup.sh'
+RUN chmod +x /tmp/setup.sh && \
+    /tmp/setup.sh
 
 RUN rm -rf /tmp/*
