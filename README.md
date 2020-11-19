@@ -6,7 +6,7 @@ I use gitlabCI so the paths to my project will already be there, but you can mak
 # create workspace with your project
 
 ```
-/opt/st/stm32cubeide_1.4.0/stm32cubeide --launcher.suppressErrors -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -data /opt/workspace -import MYPROJECTPATH
+/opt/st/stm32cubeide_1.5.0/stm32cubeide --launcher.suppressErrors -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -data /opt/workspace -import MYPROJECTPATH
 ```
 
 # build cube project
@@ -16,13 +16,13 @@ sh /opt/st/stm32cubeide_1.4.0/headless_build.sh -build MYPROJECT -data /opt/work
 # Docker cheat cheat
 
 ```
-docker build -t rotule666/st-stm32cubeide:1.4.0 .
+docker build -t rotule666/st-stm32cubeide:1.5.0 .
 docker images
-docker run -d -it rotule666/st-stm32cubeide:1.4.0
+docker run --name st -d -it rotule666/st-stm32cubeide:1.5.0
 docker ps
-docker exec -ti e9f68b168184 bash
+docker exec -ti st bash
 
-docker push rotule666/st-stm32cubeide:1.4.0
+docker push rotule666/st-stm32cubeide:1.5.0
 
 docker image prune -a
 docker container prune
@@ -38,7 +38,7 @@ extract the zip file and get the original setup .sh
 
 ```
 mkdir output
-./st-stm32cubeide_1.4.0_7511_20200720_0928_amd64.sh --tar -xvf -C output
+./st-stm32cubeide_1.5.0_8698_20201117_1050_amd64.sh --tar -xvf -C output
 rm setupOriginal.sh
 mv output/setup.sh setupOriginal.sh
 ```
