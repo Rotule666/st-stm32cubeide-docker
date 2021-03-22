@@ -3,6 +3,8 @@
 thisdir=$(readlink -m $(dirname $0))
 param_installdir=$(readlink -m "$1")
 
+trap 'echo >&2 "Installation failed" ; $thisdir/cleanup.sh ; exit 1' ERR
+
 chmod +x $thisdir/*.sh
 
 

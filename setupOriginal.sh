@@ -3,6 +3,8 @@
 thisdir=$(readlink -m $(dirname $0))
 param_installdir=$(readlink -m "$1")
 
+trap 'echo >&2 "Installation failed" ; $thisdir/cleanup.sh ; exit 1' ERR
+
 chmod +x $thisdir/*.sh
 
 # Ask user to agree on license
@@ -102,11 +104,6 @@ done
 
 echo "Installing STM32CubeIDE into $installdir ..."
 tar zxf st-stm32cubeide*.tar.gz -C $installdir
-
-# Setup java cacerts for internal JRE
-$thisdir/installCA.sh $installdir || true
-# Install installCA.sh into installation dir in case someone needs to rerun it afterward.
-cp $thisdir/installCA.sh $installdir
 
 # Install uninstaller
 cp \
