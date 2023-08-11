@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:jammy
 
 #AUTHOR Francois Rainville <francoisrainville@effenco.com>
 
@@ -24,12 +24,13 @@ RUN /opt/miniconda/bin/pip install crcmod && \
 # Install st-stm32cubeide
 #COPY en.st-stm32cubeide_1.12.0_14980_20230301_1550_amd64.sh.zip /tmp/en.st-stm32cubeide_1.12.0_14980_20230301_1550_amd64.sh.zip
 #RUN \
-RUN wget --quiet -P /tmp https://www.dropbox.com/s/qs9pson7sb9lctb/en.st-stm32cubeide_1.12.0_14980_20230301_1550_amd64.sh.zip?dl=1 && \
-    mv /tmp/en.st-stm32cubeide_1.12.0_14980_20230301_1550_amd64.sh.zip?dl=1 /tmp/en.st-stm32cubeide_1.12.0_14980_20230301_1550_amd64.sh.zip && \
-    unzip /tmp/en.st-stm32cubeide_1.12.0_14980_20230301_1550_amd64.sh.zip -d /tmp && \
-    rm /tmp/en.st-stm32cubeide_1.12.0_14980_20230301_1550_amd64.sh.zip && \
-	chmod +x /tmp/st-stm32cubeide_1.12.0_14980_20230301_1550_amd64.sh && \
-    sh -c '/tmp/st-stm32cubeide_1.12.0_14980_20230301_1550_amd64.sh --tar -xvf -C /tmp' && \
+RUN wget -P /tmp "https://www.dropbox.com/scl/fi/yj7ltrdj25ibroz1ve0d9/en.st-stm32cubeide_1.13.1_17479_20230728_0839_amd64.sh.zip?rlkey=7r43nfp8gu4sgetny0pgjogeh&dl=1"
+
+RUN mv "/tmp/en.st-stm32cubeide_1.13.1_17479_20230728_0839_amd64.sh.zip?rlkey=7r43nfp8gu4sgetny0pgjogeh&dl=1" "/tmp/en.st-stm32cubeide_1.13.1_17479_20230728_0839_amd64.sh.zip" && \
+    unzip "/tmp/en.st-stm32cubeide_1.13.1_17479_20230728_0839_amd64.sh.zip" -d /tmp && \
+    rm "/tmp/en.st-stm32cubeide_1.13.1_17479_20230728_0839_amd64.sh.zip" && \
+	chmod +x "/tmp/st-stm32cubeide_1.13.1_17479_20230728_0839_amd64.sh" && \
+    sh -c '/tmp/st-stm32cubeide_1.13.1_17479_20230728_0839_amd64.sh --tar -xvf -C /tmp' && \
 	rm /tmp/setup.sh
 
 COPY setup.sh /tmp
