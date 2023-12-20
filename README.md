@@ -16,13 +16,13 @@ sh /opt/st/stm32cubeide_1.10.1/headless_build.sh -build MYPROJECT -data /opt/wor
 # Docker cheat cheat
 
 ```
-docker build -t rotule666/st-stm32cubeide:1.13.1 .
+docker build -t rotule666/st-stm32cubeide:1.14.0 .
 docker images
-docker run --name st -d -it rotule666/st-stm32cubeide:1.13.1
+docker run --name st -d -it rotule666/st-stm32cubeide:1.14.0
 docker ps
 docker exec -ti st bash
 
-docker push rotule666/st-stm32cubeide:1.13.1
+docker push rotule666/st-stm32cubeide:1.14.0
 
 docker image prune -a
 docker container prune
