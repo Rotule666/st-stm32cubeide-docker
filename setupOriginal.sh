@@ -113,7 +113,7 @@ cp \
 	$installdir
 
 if [ "$install_as_root" -o "$install_debug" ]; then
-	eval $available_sudo ./install_as_root.sh $installdir
+	eval $available_sudo ./install_as_root.sh $installdir $(id -un)
 fi
 
 echo "STM32CubeIDE installed successfully"

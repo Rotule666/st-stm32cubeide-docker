@@ -7,7 +7,6 @@ trap 'echo >&2 "Installation failed" ; $thisdir/cleanup.sh ; exit 1' ERR
 
 chmod +x $thisdir/*.sh
 
-
 export LICENSE_ALREADY_ACCEPTED=1
 
 install_as_root=
@@ -87,7 +86,8 @@ do
 done
 
 echo "Installing STM32CubeIDE into $installdir ..."
-
 tar zxf /tmp/st-stm32cubeide*.tar.gz -C $installdir
+
+echo "STM32CubeIDE installed successfully"
 
 eval $available_sudo $thisdir/cleanup.sh
