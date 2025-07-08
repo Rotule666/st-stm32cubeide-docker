@@ -22,15 +22,15 @@ RUN /opt/miniconda/bin/pip install crcmod && \
     /opt/miniconda/bin/pip install intelhex
 
 # Install st-stm32cubeide
-COPY en.st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh.zip /tmp/en.st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh.zip
+COPY st-stm32cubeide_1.19.0_25607_20250703_0907_amd64.sh.zip /tmp/st-stm32cubeide_1.19.0_25607_20250703_0907_amd64.sh.zip
 #RUN \
 #RUN wget -P /tmp "https://www.dropbox.com/scl/fi/yj7ltrdj25ibroz1ve0d9/en.st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh.zip?rlkey=7r43nfp8gu4sgetny0pgjogeh&dl=1"
 
 #RUN mv "/tmp/en.st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh.zip?rlkey=7r43nfp8gu4sgetny0pgjogeh&dl=1" "/tmp/en.st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh.zip" && \
- RUN unzip "/tmp/en.st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh.zip" -d /tmp && \
-    rm "/tmp/en.st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh.zip" && \
-	chmod +x "/tmp/st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh" && \
-    sh -c '/tmp/st-stm32cubeide_1.18.0_24413_20250227_1633_amd64.sh --tar -xvf -C /tmp' && \
+ RUN unzip "/tmp/st-stm32cubeide_1.19.0_25607_20250703_0907_amd64.sh.zip" -d /tmp && \
+    rm "/tmp/st-stm32cubeide_1.19.0_25607_20250703_0907_amd64.sh.zip" && \
+	chmod +x "/tmp/st-stm32cubeide_1.19.0_25607_20250703_0907_amd64.sh" && \
+    sh -c '/tmp/st-stm32cubeide_1.19.0_25607_20250703_0907_amd64.sh --tar -xvf -C /tmp' && \
 	rm /tmp/setup.sh
 
 COPY setup.sh /tmp
